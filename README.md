@@ -1,5 +1,6 @@
 # panda-objects
-a minimal implementation of ycb and interactive objects
+
+A minimal implementation of YCB and interactive objects.
 
 ## Install and Run
 
