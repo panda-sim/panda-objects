@@ -7,9 +7,9 @@ import os
 # https://github.com/bulletphysics/bullet3/tree/master/examples/pybullet/gym/pybullet_data
 class PyBulletObject():
 
-    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=1.0):
+    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=1.0, useFixedBase=False):
         urdfRootPath = pybullet_data.getDataPath()
-        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling)
+        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling, useFixedBase=useFixedBase)
 
     def get_state(self):
         values = p.getBasePositionAndOrientation(self.object)
@@ -24,18 +24,18 @@ class PyBulletObject():
 # objects/simple_objects
 class SimpleObject(PyBulletObject):
 
-    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=1.0):
+    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=1.0, useFixedBase=False):
         urdfRootPath = "objects/simple_objects"
-        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling)
+        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling, useFixedBase=useFixedBase)
 
 
 # see available ycb objects in the folder:
 # objects/ycb_objects
 class YCBObject(PyBulletObject):
 
-    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=0.08):
+    def __init__(self, object_name, basePosition=[0.0, 0.0, 0.0], baseOrientation=[0.0, 0.0, 0.0, 1.0], globalScaling=0.08, useFixedBase=False):
         urdfRootPath = "objects/ycb_objects/"
-        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling)
+        self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling, useFixedBase=useFixedBase)
 
 
 # see available collab objects in the folder:
@@ -46,7 +46,7 @@ class CollabObject():
         urdfRootPath = "objects/collab_objects/"
         self.object = p.loadURDF(os.path.join(urdfRootPath, object_name), basePosition=basePosition, baseOrientation=baseOrientation, globalScaling=globalScaling, useFixedBase=useFixedBase)
 
-    # these objects have a revolute joint (e.g., door) or a prismatic joint (e.g., button)
+    # these objects have a revolute joint (e.g., door, microwave) or a prismatic joint (e.g., button, drawer, cabinet)
     # the "handle" refers to the link marked in red
     # the "joint_angle" is the position of the revolute or prismatic joint
     def get_state(self):

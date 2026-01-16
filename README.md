@@ -23,4 +23,4 @@ python main.py
 
 ## Expected Output
 
-<img src="objects/env.png" width="750">
+<img src="env.png" width="750">

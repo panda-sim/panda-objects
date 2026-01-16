@@ -29,9 +29,9 @@ panda = p.loadURDF(os.path.join(urdfRootPath,"franka_panda/panda.urdf"),
                         basePosition=config.baseStartPosition,
                         baseOrientation=p.getQuaternionFromEuler(config.baseStartOrientationE),
                         useFixedBase=True)
-home_position = config.jointStartPositions
-for idx in range(len(home_position)):
-    p.resetJointState(panda, idx, home_position[idx])
+jointStartPositions = config.jointStartPositions
+for idx in range(len(jointStartPositions)):
+    p.resetJointState(panda, idx, jointStartPositions[idx])
 
 # run simulation
 while True:
